@@ -20,7 +20,8 @@ namespace API.Persistence.Repositories
                         from CS in G_CS.DefaultIfEmpty()
                         join C in _dbCtx.Countries
                         on CS.CountryId equals C.Id into G_CS_C
-                        from C in G_CS_C.DefaultIfEmpty()
+                        from C in G_CS_C.DefaultIfEmpty() 
+                        where CS.Id == championShipId
                         select new
                         {
                             Id = G.Id,
