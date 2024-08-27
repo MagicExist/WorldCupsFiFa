@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Domain.Repository
 {
-    internal interface IGroupsDbRepository
+    public interface IGroupsDbRepository
     {
         Task<IEnumerable<Groups>> GetGroupsByChampionShipAsync(int championShipId);
     }
