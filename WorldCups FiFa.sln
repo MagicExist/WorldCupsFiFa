@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Presentation", "WorldCups FiFa\API.Presentation.csproj", "{68B7EAE3-0046-4EAD-A28F-AA0F15D3C30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Presentation", "WorldCups FiFa\API.Presentation.csproj", "{68B7EAE3-0046-4EAD-A28F-AA0F15D3C30D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8FB43D29-E745-448F-973B-BBCA92863756}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FD8AD85A-AC39-4D77-8B34-F90E33E4E374}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Domain", "API.Domain\API.Domain.csproj", "{36D87762-704E-49AA-9A98-055449D38841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Domain", "API.Domain\API.Domain.csproj", "{36D87762-704E-49AA-9A98-055449D38841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Persistence", "Persistence\API.Persistence.csproj", "{7A6E5F60-70A3-4B14-B17B-AD44635AAD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Persistence", "Persistence\API.Persistence.csproj", "{7A6E5F60-70A3-4B14-B17B-AD44635AAD69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Application", "API.Application\API.Application.csproj", "{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{7A6E5F60-70A3-4B14-B17B-AD44635AAD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A6E5F60-70A3-4B14-B17B-AD44635AAD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A6E5F60-70A3-4B14-B17B-AD44635AAD69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{68B7EAE3-0046-4EAD-A28F-AA0F15D3C30D} = {8FB43D29-E745-448F-973B-BBCA92863756}
 		{36D87762-704E-49AA-9A98-055449D38841} = {FD8AD85A-AC39-4D77-8B34-F90E33E4E374}
 		{7A6E5F60-70A3-4B14-B17B-AD44635AAD69} = {8FB43D29-E745-448F-973B-BBCA92863756}
+		{6E6693E4-FCE1-42D2-BBDE-90C7AA724A84} = {FD8AD85A-AC39-4D77-8B34-F90E33E4E374}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A49EF909-1379-490E-8188-358A4CB8444A}
