@@ -9,6 +9,6 @@ namespace API.Domain.Repository
 {
     public interface IGroupsDbRepository
     {
-        Task<IEnumerable<T>> GetGroupsByChampionShipAsync<T>(int championShipId);
+        Task<IEnumerable<Groups>> GetGroupsByChampionShipAsync(int championShipId);
     }
 }

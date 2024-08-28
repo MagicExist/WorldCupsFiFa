@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Persistence.Repositories
 {
-    internal class GroupsDbRepository : IGroupsDbRepository
+    public class GroupsDbRepository : IGroupsDbRepository
     {
         private readonly WorldCupsDB _dbCtx; 
         public GroupsDbRepository(WorldCupsDB dbCtx) 
         {
             _dbCtx = dbCtx;
         }
-        public async Task<IEnumerable<T>> GetGroupsByChampionShipAsync<T>(int championShipId)
+        public async Task<IEnumerable<Groups>> GetGroupsByChampionShipAsync(int championShipId)
         {
-            var query = from G in _dbCtx.Groups
+            IQueryable<Groups> query = from G in _dbCtx.Groups
                                                     join CS in _dbCtx.ChampionShips
                                                     on G.ChampionShipId equals CS.Id into G_CS
                                                     from CS in G_CS.DefaultIfEmpty()
@@ -23,15 +23,22 @@ namespace API.Persistence.Repositories
                                                     on CS.CountryId equals C.Id into G_CS_C
                                                     from C in G_CS_C.DefaultIfEmpty() 
                                                     where CS.Id == championShipId
-                                                    select (T)(object) new 
+                                                    select new Groups
                                                     {
-                                                        GroupId = G.Id,
+                                                        Id = G.Id,
                                                         Group = G.Group,
-                                                        ChampionShipId = G.ChampionShipId,
-                                                        ChampionShip = G.ChampionShip.ChampionShip,
-                                                        CountryId = C.Id,
-                                                        Country = C.Country,
-                                                        Entity = C.Entity
+                                                        ChampionShip = new ChampionShips()
+                                                        { 
+                                                            Id = CS.Id,
+                                                            ChampionShip = CS.ChampionShip,
+                                                            Country = new Countries()
+                                                            {
+                                                                Id = C.Id,
+                                                                Country = C.Country,
+                                                                Entity = C.Entity
+                                                            },
+                                                            Year = CS.Year
+                                                        }
                                                     };
 
 

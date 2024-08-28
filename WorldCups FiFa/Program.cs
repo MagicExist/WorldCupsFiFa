@@ -1,7 +1,9 @@
 
+using API.Application.Services;
+using API.Domain.Repository;
 using API.Persistence.DataBase;
+using API.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
-
 namespace WorldCups_FiFa
 {
     public class Program
@@ -15,6 +17,8 @@ namespace WorldCups_FiFa
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
             });
+            builder.Services.AddScoped<GroupsDbService>();
+            builder.Services.AddScoped<IGroupsDbRepository, GroupsDbRepository>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

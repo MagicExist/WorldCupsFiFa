@@ -1,5 +1,6 @@
 ﻿
 using API.Application.DTOs;
+using API.Domain.Entities;
 using API.Domain.Repository;
 
 namespace API.Application.Services
@@ -12,9 +13,9 @@ namespace API.Application.Services
             _groupsDbRepository = groupsDbRepository;
         }
 
-        public async Task<IEnumerable<GetGroupsByChampionShipDTO>> GetGroupsByChampionShip(int championShipId)
+        public async Task<IEnumerable<Groups>> GetGroupsByChampionShipAsync(int championShipId)
         {
-            var dataResult = await _groupsDbRepository.GetGroupsByChampionShipAsync<GetGroupsByChampionShipDTO>(championShipId);
+            var dataResult = await _groupsDbRepository.GetGroupsByChampionShipAsync(championShipId);
             return dataResult;
         }
     }

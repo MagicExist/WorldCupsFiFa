@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,7 @@ namespace API.Application.DTOs
     {
         public int GroupId { get; set; }
         public char Group {  get; set; }
-        public int ChampionShipId { get; set; }
-        public string? ChampionShip {  get; set; }
-        public int CountryId { get; set; }
-        public string? Country { get; set; }
-        public string? Entity { get; set; }
+        public ChampionShips? ChampionShips { get; set; }
+        public Countries? Countries { get; set; }
     }
 }
