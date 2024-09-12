@@ -15,7 +15,7 @@ namespace WorldCups_FiFa.Controllers
         }
 
         [HttpGet("ChampionShips/{id}")]
-        public async Task<GetGroupsByChampionShip_GroupDTO[]>  GetGroupsByChampionShipAsync(int id)
+        public async Task<GetGroupsByChampionShipDTO[]>  GetGroupsByChampionShipAsync(int id)
         {
             return await _groupsDbService.GetGroupsByChampionShipAsync(id);
         }

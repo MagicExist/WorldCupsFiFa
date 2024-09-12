@@ -1,4 +1,5 @@
 ﻿using API.Application.DTOs;
+using API.Application.DTOs.GetGroupsByChampionShipDtos;
 using API.Domain.Entities;
 using API.Domain.Repository;
 using API.Persistence.DataBase;
@@ -15,31 +16,27 @@ namespace API.Persistence.Repositories
         }
         public async Task<Groups[]> GetGroupsByChampionShipAsync(int championShipId)
         {
-            IQueryable<Groups> query =  from G in _dbCtx.Groups
-                                        join CS in _dbCtx.ChampionShips
-                                        on G.ChampionShipId equals CS.Id into G_CS
-                                        from CS in G_CS.DefaultIfEmpty()
-                                        join C in _dbCtx.Countries
-                                        on CS.CountryId equals C.Id into G_CS_C
-                                        from C in G_CS_C.DefaultIfEmpty() 
-                                        where CS.Id == championShipId
-                                        select new Groups
-                                        {
-                                            Id = G.Id,
-                                            Group = G.Group,
-                                            ChampionShip = new ChampionShips()
-                                            { 
-                                                Id = CS.Id,
-                                                ChampionShip = CS.ChampionShip,
-                                                Country = new Countries()
-                                                {
-                                                    Id = C.Id,
-                                                    Country = C.Country,
-                                                    Entity = C.Entity
-                                                },
-                                                Year = CS.Year
-                                            }
-                                        };
+            IQueryable<Groups>   query = _dbCtx.Groups
+                                                    .Include(group => group.ChampionShip)
+                                                    .ThenInclude(championShip => championShip.Country)
+                                                    .Where(group => group.ChampionShip.Id == championShipId)
+                                                    .Select(group => new Groups
+                                                    {
+                                                        Id = group.Id,
+                                                        ChampionShip = new ChampionShips
+                                                        {
+                                                            Id = group.ChampionShip.Id,
+                                                            ChampionShip = group.ChampionShip.ChampionShip,
+                                                            Country = new Countries
+                                                            {
+                                                                Id = group.ChampionShip.Country.Id,
+                                                                Country = group.ChampionShip.Country.Country,
+                                                                Entity = group.ChampionShip.Country.Entity
+                                                            }
+                                                        }
+                                                        
+                                                    });
+                                        
 
 
             return await query.ToArrayAsync();

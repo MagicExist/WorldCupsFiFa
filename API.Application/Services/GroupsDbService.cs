@@ -12,25 +12,17 @@ namespace API.Application.Services
             _groupsDbRepository = groupsDbRepository;
         }
 
-        public async Task<GetGroupsByChampionShip_GroupDTO[]> GetGroupsByChampionShipAsync(int championShipId)
+        public async Task<GetGroupsByChampionShipDTO[]> GetGroupsByChampionShipAsync(int championShipId)
         {
             var dataRaw = await _groupsDbRepository.GetGroupsByChampionShipAsync(championShipId);
-            var dataResult = dataRaw.Select(item => new GetGroupsByChampionShip_GroupDTO
+            var dataResult = dataRaw.Select(item => new GetGroupsByChampionShipDTO
             {
-                Id = item.Id,
-                Group = item.Group,
-                ChampionShips = new GetGroupsByChampionShip_ChampionShipDTO 
-                {
-                    id = item.ChampionShip.Id,
-                    ChampionShip = item.ChampionShip.ChampionShip,
-                    Year = item.ChampionShip.Year,
-                    Country = new GetGroupsByChampionShip_CountryDTO
-                    {
-                        id = item.ChampionShip.Country.Id,
-                        Country = item.ChampionShip.Country.Country,
-                        Entity = item.ChampionShip.Country.Entity
-                    }
-                }
+                GroupId = item.Id,
+                ChampionShipId = item.ChampionShip.Id,
+                ChampionShipName = item.ChampionShip.ChampionShip,
+                CountryId = item.ChampionShip.Country.Id,
+                CountryName = item.ChampionShip.Country.Country,
+                CountryEntity = item.ChampionShip.Country.Entity
             }
             ).ToArray();
             return dataResult;
